@@ -1,14 +1,10 @@
 import socket
 import threading
 
-
-host = "localhost"
-port = 5500
-
 nickname = input("Enter a name for the chat: ")
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect((host, port))
+client.connect(("127.0.0.1", 5500))
 
 def receiver(): 
     while True: 
@@ -16,7 +12,7 @@ def receiver():
             msg = client.recv(1024).decode('ascii')
             if msg == "NAME": 
                 client.send(nickname.encode('ascii'))
-            else: 
+            else:   
                 print(msg)
         except: 
             print("An error occured!")

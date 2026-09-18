@@ -27,7 +27,7 @@ def handle(client):
             index = clients.index(client)
             clients.remove(client)
             client.close() 
-            nicknames = nicknames[index]
+            nickname = nicknames[index]
             broadcast('{} left!'.format(nicknames).encode('ascii'))
             nicknames.remove(nickname)
             break
@@ -48,5 +48,9 @@ def receive():
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
 
+
+if __name__ == "__main__":
+    print(f"Server listening on {host}:{port}")
+    receive()
 
 
